@@ -1,158 +1,64 @@
-using NUnit.Framework.Constraints;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
-namespace Camera
+namespace Mirror
 {
-    // [ExecuteInEditMode]
     public class MirrorPlane : MonoBehaviour
     {
-        private Renderer rend;
+        public Renderer rend;
+        private Material mirrorMaterial;
+
+        [HideInInspector] public UnityEngine.Camera reflectionCam;
 
         public float clipPlaneOffset = 0.01f;
         public LayerMask reflectLayers = -1;
 
-        public int recursionLimit = 2;
-
-        private UnityEngine.Camera reflectionCam;
-        private UnityEngine.Camera meinCampf;
-
-        private RenderTexture renderTexture;
-        private Material mirrorMaterial;
-
         private void Awake()
         {
-            reflectionCam = GetComponent<UnityEngine.Camera>();
-
-            rend = GetComponent<MeshRenderer>();
+            rend = GetComponent<Renderer>();
             mirrorMaterial = rend.material;
 
-            CreateRenderTexture();
             CreateReflectionCamera();
-
-            meinCampf = UnityEngine.Camera.main;
-        }
-
-        void CreateRenderTexture()
-        {
-            renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
-            renderTexture.Create();
         }
 
         void CreateReflectionCamera()
         {
-            GameObject camGO = new GameObject($"{name}_ReflectionCam")
-            {
-                hideFlags = HideFlags.HideAndDontSave
-            };
-            reflectionCam = camGO.AddComponent<UnityEngine.Camera>();
+            GameObject camObj = new GameObject($"{name}_ReflectionCam");
+            camObj.hideFlags = HideFlags.HideInHierarchy;
+            reflectionCam = camObj.AddComponent<UnityEngine.Camera>();
             reflectionCam.enabled = false;
             reflectionCam.allowHDR = true;
-            reflectionCam.targetTexture = renderTexture;
         }
 
-
-        void LateUpdate()
+        public void SetReflectionSource(Texture source, int depth)
         {
-            RenderReflection(recursionLimit);
+            mirrorMaterial.SetFloat("_Depth", Mathf.Pow(depth * 0.1f, 2f));
+            mirrorMaterial.SetTexture("_RenderTexture", source);
         }
 
-        private static int currentFrame = -1;
-        private int lastRenderFrame = -1;
-
-
-        public void RenderReflection(int depth)
+        public void SetDisplayTexture(RenderTexture texture)
         {
-            if (Time.frameCount != currentFrame)
-            {
-                currentFrame = Time.frameCount;
-                // Сбрасываем флаги всех зеркал (можно хранить в списке, для простоты пропустим)
-            }
-            if (lastRenderFrame == Time.frameCount) return;
-            lastRenderFrame = Time.frameCount;
-
-            if (depth < 0) return;
-
-            // Находим все зеркала в сцене
-            MirrorPlane[] allMirrors = FindObjectsByType<MirrorPlane>(FindObjectsSortMode.None);
-
-            if (depth == 0)
-            {
-                RenderSimpleReflection();
-            }
-            else
-            {
-                Material[] originalMaterials = new Material[allMirrors.Length];
-                for (int i = 0; i < allMirrors.Length; i++)
-                {
-                    MirrorPlane m = allMirrors[i];
-                    if (m == this) continue;
-
-                    originalMaterials[i] = m.rend.sharedMaterial;
-
-                    m.RenderReflection(depth - 1);
-
-                    m.rend.material.mainTexture = m.renderTexture;
-                }
-
-                RenderSimpleReflection();
-
-                for (int i = 0; i < allMirrors.Length; i++)
-                {
-                    MirrorPlane m = allMirrors[i];
-                    if (m == this) continue;
-                    m.rend.material = originalMaterials[i];
-                }
-            }
-
-            mirrorMaterial.mainTexture = renderTexture;
+            mirrorMaterial.mainTexture = texture;
         }
 
-        void RenderSimpleReflection()
+        public void RenderReflection(RenderTexture targetTex, Vector3 camPos, Quaternion camRot, UnityEngine.Camera mainCam)
         {
-            if (meinCampf == null) return;
-
-            Vector3 mirrorNormal = transform.up;
-            Vector3 mirrorPosition = transform.position;
-
-            Vector3 reflectPos = ReflectPoint(meinCampf.transform.position, mirrorPosition, mirrorNormal);
-            Vector3 reflectForward = ReflectVector(meinCampf.transform.forward, mirrorNormal);
-            Vector3 reflectUp = ReflectVector(meinCampf.transform.up, mirrorNormal);
-
-            reflectionCam.transform.position = reflectPos;
-            reflectionCam.transform.LookAt(reflectPos + reflectForward, reflectUp);
-
-            // // Настройка косой ближней плоскости отсечения
-            // float d = -Vector3.Dot(mirrorNormal, mirrorPosition) - clipPlaneOffset;
-            // Vector4 clipPlane = new Vector4(mirrorNormal.x, mirrorNormal.y, mirrorNormal.z, d);
-
-            // var proj = reflectionCam.CalculateObliqueMatrix(clipPlane);
-            // reflectionCam.projectionMatrix = proj;
-
-            reflectionCam.fieldOfView = meinCampf.fieldOfView;
-            reflectionCam.nearClipPlane = meinCampf.nearClipPlane;
-            reflectionCam.farClipPlane = meinCampf.farClipPlane;
-            reflectionCam.allowMSAA = meinCampf.allowMSAA;
-
+            reflectionCam.CopyFrom(mainCam);
             reflectionCam.cullingMask = reflectLayers;
 
-            reflectionCam.clearFlags = meinCampf.clearFlags;
-            reflectionCam.backgroundColor = meinCampf.backgroundColor;
+            reflectionCam.transform.position = camPos;
+            reflectionCam.transform.rotation = camRot;
 
-            reflectionCam.targetTexture = renderTexture;
+            reflectionCam.targetTexture = targetTex;
+
+            SetNearClipPlane();
+
             reflectionCam.Render();
-
         }
 
-        Vector3 ReflectPoint(Vector3 point, Vector3 planePos, Vector3 planeNormal)
+        void SetNearClipPlane()
         {
-            float distance = Vector3.Dot(planeNormal, point - planePos);
-            return point - 2 * distance * planeNormal;
-        }
-
-        Vector3 ReflectVector(Vector3 vec, Vector3 planeNormal)
-        {
-            return vec - 2 * Vector3.Dot(vec, planeNormal) * planeNormal;
+            reflectionCam.nearClipPlane = clipPlaneOffset;
         }
     }
 }

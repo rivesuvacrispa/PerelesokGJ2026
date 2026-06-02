@@ -28,7 +28,7 @@ namespace Camera
             Vector3 camPos = cam.transform.position;
             Vector3 planePos = plane.position;
             Vector3 dd = (planePos - camPos).normalized;
-        
+
             float yy =
                 Mathf.Atan2(dd.x, dd.z) *
                 Mathf.Rad2Deg;
@@ -36,7 +36,7 @@ namespace Camera
             float pp =
                 Mathf.Asin(dd.y) *
                 Mathf.Rad2Deg;
-        
+
             Quaternion targetRotation =
                 Quaternion.Euler(
                     -pp,

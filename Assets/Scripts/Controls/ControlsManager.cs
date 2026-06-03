@@ -8,10 +8,12 @@ namespace Controls
         
         [SerializeField] private KeyCode spellKey = KeyCode.F;
         [SerializeField] private KeyCode interactionKey = KeyCode.E;
+        [SerializeField] private KeyCode nextDialogKey = KeyCode.Space;
         
         public delegate void ControlsManagerEvent();
         public static event ControlsManagerEvent OnSpellPress;
         public static event ControlsManagerEvent OnInteractionPress;
+        public static event ControlsManagerEvent OnNextDialog;
 
         public KeyCode SpellKey => spellKey;
 
@@ -27,6 +29,9 @@ namespace Controls
             
             if (Input.GetKeyDown(interactionKey))
                 OnInteractionPress?.Invoke();
+            
+            if (Input.GetKeyDown(nextDialogKey))
+                OnNextDialog?.Invoke();
         }
     }
 }

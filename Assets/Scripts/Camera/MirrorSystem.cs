@@ -116,7 +116,6 @@ namespace Mirror
             {
                 VirtualCamera vCam = ReflectCameraInPlane(viewCam, mirror.transform);
 
-
                 List<ViewTexture> innerTextures = RenderRecursive(vCam, remainingDepth - 1);
 
                 foreach (var m in mirrors) m.SetReflectionSource(blackTexture, remainingDepth);

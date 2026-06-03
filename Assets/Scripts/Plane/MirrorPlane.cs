@@ -5,7 +5,7 @@ namespace Mirror
 {
     public class MirrorPlane : MonoBehaviour
     {
-        public Renderer rend;
+        [HideInInspector] public Renderer rend;
         private Material mirrorMaterial;
 
         [HideInInspector] public UnityEngine.Camera reflectionCam;
@@ -32,8 +32,8 @@ namespace Mirror
 
         public void SetReflectionSource(Texture source, int depth)
         {
-            mirrorMaterial.SetFloat("_Depth", Mathf.Pow(depth * 0.1f, 2f));
-            mirrorMaterial.SetTexture("_RenderTexture", source);
+            mirrorMaterial.SetFloat("_Depth", Mathf.Pow(depth * 0.3f, 2f));
+            mirrorMaterial.SetTexture("_BaseMap", source);
         }
 
         public void SetDisplayTexture(RenderTexture texture)

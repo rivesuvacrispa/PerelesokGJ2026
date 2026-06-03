@@ -58,6 +58,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 1
     - _Cull: 2
+    - _Depth: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Metallic: 0.403

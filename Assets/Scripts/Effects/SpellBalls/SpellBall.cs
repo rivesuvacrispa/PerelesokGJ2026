@@ -17,7 +17,7 @@ namespace Effects.SpellBalls
         
         private Rigidbody rb;
         private Collider col;
-        private bool isDespawning = false;
+        protected bool isDespawning = false;
         private int collisionCounter = 0;
         public delegate void SpellBallCollisionEvent(SpellBall ball, Collision collision);
         public static event SpellBallCollisionEvent OnMirrorCollisionGlobal;
@@ -67,7 +67,7 @@ namespace Effects.SpellBalls
                 Despawn();
         }
 
-        protected void Despawn()
+        private void Despawn()
         {
             StartCoroutine(DespawnRoutine());
         }
@@ -78,6 +78,7 @@ namespace Effects.SpellBalls
             explosionParticles.Play();
             StartCoroutine(DespawnRoutine());
         }
+        
 
         private IEnumerator DespawnRoutine()
         {
@@ -87,7 +88,8 @@ namespace Effects.SpellBalls
             particles.Stop();
             col.enabled = false;
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            yield return new WaitUntil(() => !particles.IsAlive());
+            yield return new WaitUntil(() => !(particles.IsAlive() || explosionParticles.IsAlive()));
+            
             Destroy(gameObject);
         }
     }

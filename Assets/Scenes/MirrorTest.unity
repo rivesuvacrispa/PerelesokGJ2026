@@ -17177,6 +17177,12 @@ MonoBehaviour:
   signLetter: {fileID: 802000975}
   ashEffectZone: {fileID: 7522308004858019105, guid: 1d95d7d56ece541438d06da594025ed1, type: 3}
   heatedMirrorEffectZone: {fileID: 855259138595149056, guid: 8a199a5eb87643d46ba759bfce0fd288, type: 3}
+  mirrorCrackEffectZone: {fileID: 5514715764123291423, guid: b06330e52c33751458bd1c76192514db, type: 3}
+  crackTypeToCrackSprite:
+  - {fileID: -26700351, guid: f8d888790ce4da54c8e667eb3ddc05bc, type: 3}
+  - {fileID: 841789524, guid: f8d888790ce4da54c8e667eb3ddc05bc, type: 3}
+  - {fileID: -236010933, guid: f8d888790ce4da54c8e667eb3ddc05bc, type: 3}
+  mirrorCrackMaterial: {fileID: 2100000, guid: 87f0a30d39d91a5498dbc1489af4bc5d, type: 2}
 --- !u!114 &1841795214
 MonoBehaviour:
   m_ObjectHideFlags: 0

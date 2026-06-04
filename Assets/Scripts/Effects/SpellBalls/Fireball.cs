@@ -25,7 +25,7 @@ namespace Effects.SpellBalls
 
         protected override void CollideWithMirror(Vector3 contactPoint)
         {
-            if (PhysUtils.InsideEffectZone<AshEffectZone>(contactPoint, out _))
+            if (PhysUtils.InsideEffectZone<AshEffectZone>(contactPoint, out _, out _))
             {
                 Instantiate(GlobalDefinitions.HeatedMirrorEffectZone, transform.position, Quaternion.identity);
                 Explode();

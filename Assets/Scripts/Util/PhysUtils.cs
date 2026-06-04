@@ -30,17 +30,19 @@ namespace Util
             return points.Count != 0;
         }
 
-        public static bool InsideEffectZone<T>(Vector3 origin, out int zonesCount) where T : SpellEffectZone
+        public static bool InsideEffectZone<T>(Vector3 origin, out int zonesCount, out T last) where T : SpellEffectZone
         {
             var colliders = Physics.OverlapSphere(origin, 0.1f, 1 << GlobalDefinitions.SpellEffectZoneLayer);
             zonesCount = 0;
             bool inside = false;
+            last = null;
             foreach (Collider collider in colliders)
             {
-                if (collider.TryGetComponent<T>(out _))
+                if (collider.TryGetComponent<T>(out T c))
                 {
                     inside = true;
                     zonesCount++;
+                    last = c;
                 }
             }
 

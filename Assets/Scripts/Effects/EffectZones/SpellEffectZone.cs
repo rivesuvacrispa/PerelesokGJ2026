@@ -1,24 +1,10 @@
-﻿using Interaction.Objects;
-using UnityEngine;
+﻿using UnityEngine;
+using Util;
 
 namespace Effects.EffectZones
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class SpellEffectZone : MonoBehaviour
+    public abstract class SpellEffectZone : DestroyOnSleep
     {
-        private void OnEnable()
-        {
-            Bed.OnSleep += OnSleep;
-        }
-
-        private void OnDisable()
-        {
-            Bed.OnSleep -= OnSleep;
-        }
-
-        private void OnSleep()
-        {
-            Destroy(gameObject);
-        }
     }
 }

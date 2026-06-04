@@ -19632,7 +19632,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4969644765183270413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f814e868eec4b5c99f04c73dfe0dc2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 74c0f0a7a29098945833c6b41a50e340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Effects.SpellBall
   particles: {fileID: 1720178610956828124}

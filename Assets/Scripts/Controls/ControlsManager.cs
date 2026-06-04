@@ -27,10 +27,10 @@ namespace Controls
             if (Input.GetKeyDown(interactionKey))
                 OnInteractionPress?.Invoke();
             
-            if (Input.GetKeyDown(nextDialogKey))
+            else if (Input.GetKeyDown(nextDialogKey))
                 OnNextDialog?.Invoke();
 
-            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+            else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
                 OnNumberPress?.Invoke(1);
             
             else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))

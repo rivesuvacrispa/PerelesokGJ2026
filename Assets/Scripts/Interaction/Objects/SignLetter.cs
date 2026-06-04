@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using Player;
 using Story;
 using UnityEngine;
+using Util;
 
 namespace Interaction.Objects
 {
@@ -26,8 +28,11 @@ namespace Interaction.Objects
         public void Interact()
         {
             bool firstTime = !PlotManager.HasMemory(firstEncounterFinishedMem);
-            
-            DialogManager.Instance.StartDialog(firstTime ? firstEncounterDialogEntry : letterDialogEntry);
+
+            Vector3 cameraLookAt = PhysUtils.FindClosestMirrorPoint(PlayerCamera.Instance.transform.position);
+            DialogManager.Instance.StartDialog(
+                firstTime ? firstEncounterDialogEntry : letterDialogEntry,
+                firstTime ? cameraLookAt : default);
         }
 
         public void Burn()

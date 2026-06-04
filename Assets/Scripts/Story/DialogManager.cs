@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Controls;
+using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -50,8 +51,11 @@ namespace Story
             ControlsManager.OnNextDialog -= NextEntry;
         }
 
-        public void StartDialog(DialogEntry entry)
+        public void StartDialog(DialogEntry entry, Vector3 lookAt = default)
         {
+            if (!lookAt.Equals(default))
+                PlayerCamera.Instance.RotateToLook(lookAt);
+            
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             PlayEntry(entry);
@@ -96,6 +100,7 @@ namespace Story
         {
             if (currentEntry is null || currentEntry.Options.Count != 0) return;
 
+            Debug.Log($"Current entry: {currentEntry?.name}, next: {currentEntry?.NextEntry}");
             MakeStep(currentEntry.NextEntry);
         }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Effects.EffectZones;
 using Global;
+using Player;
 using UnityEngine;
 
 namespace Util
@@ -16,6 +17,35 @@ namespace Util
             Vector3.down,
             Vector3.up,
         };
+
+        public static Vector3 FindClosestMirrorPoint(Vector3 origin)
+        {
+            Vector3 closestPoint = default;
+            float closestSqrDistance = float.MaxValue;
+            bool found = false;
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (Physics.Raycast(
+                        origin,
+                        allDirections[i],
+                        out RaycastHit hit,
+                        float.MaxValue,
+                        1 << GlobalDefinitions.MirrorsLayer))
+                {
+                    float sqrDistance = (hit.point - origin).sqrMagnitude;
+
+                    if (sqrDistance < closestSqrDistance)
+                    {
+                        closestSqrDistance = sqrDistance;
+                        closestPoint = hit.point;
+                        found = true;
+                    }
+                }
+            }
+
+            return found ? closestPoint : default;
+        }
 
         public static bool TryFindAllMirrorsInRange(Vector3 origin, float distance, out List<Vector3> points)
         {

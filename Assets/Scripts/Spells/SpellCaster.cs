@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Controls;
 using UnityEngine;
@@ -24,6 +25,13 @@ namespace Spells
         {
             spellsCount = spells.Length;
             SpellBallCastSpeed = spellBallCastSpeed;
+            
+#if !UNITY_EDITOR
+            foreach (var button in spellButtons)
+            {
+                button.SetActive(false);
+            }
+#endif
         }
 
         private void OnEnable()
@@ -42,9 +50,9 @@ namespace Spells
         private void CastSpell(int numberPressed)
         {
             int spellIndex = numberPressed - 1;
-            
-            if (spellIndex < 0 || spellIndex >= spellsCount) return;
-            if (!spellButtons[spellIndex].gameObject.activeSelf) return;
+         
+            if (spellIndex < 0 || spellIndex > spellsCount) return;
+            if (!spellButtons[spellIndex].gameObject.activeInHierarchy) return;
             
             spells[spellIndex].Cast();
         }

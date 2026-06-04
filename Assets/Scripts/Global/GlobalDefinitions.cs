@@ -10,6 +10,7 @@ namespace Global
 
         [Header("Effect Zone Prefabs")]
         [SerializeField] private AshEffectZone ashEffectZone;
+        [SerializeField] private HeatedMirrorEffectZone heatedMirrorEffectZone;
         
         
         
@@ -20,6 +21,7 @@ namespace Global
 
         public static SignLetter SignLetter => instance.signLetter;
         public static AshEffectZone AshEffectZone => instance.ashEffectZone;
+        public static HeatedMirrorEffectZone HeatedMirrorEffectZone => instance.heatedMirrorEffectZone;
         public static int MirrorsLayer { get; private set; }
         public static int SpellBallLayer { get; private set; }
         public static int SpellEffectZoneLayer { get; private set; }

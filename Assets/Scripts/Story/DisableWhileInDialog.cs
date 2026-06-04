@@ -6,6 +6,7 @@ namespace Story
     public class DisableWhileInDialog : MonoBehaviour
     {
         [SerializeField] private List<Behaviour> componentsToDisable = new();
+        [SerializeField] private List<GameObject> gameObjectsToDisable = new();
 
 
         private void Awake()
@@ -26,6 +27,10 @@ namespace Story
             {
                 b.enabled = true;
             }
+            foreach (GameObject g in gameObjectsToDisable)
+            {
+                g.SetActive(true);
+            }
         }
 
         private void OnDialogStart()
@@ -33,6 +38,10 @@ namespace Story
             foreach (Behaviour b in componentsToDisable)
             {
                 b.enabled = false;
+            }
+            foreach (GameObject g in gameObjectsToDisable)
+            {
+                g.SetActive(false);
             }
         }
     }

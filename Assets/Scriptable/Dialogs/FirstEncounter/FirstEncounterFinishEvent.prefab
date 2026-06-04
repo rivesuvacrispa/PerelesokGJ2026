@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Story.Events.FirstEncounterFinishEvent
   memory: {fileID: 11400000, guid: 072e4c863c9d82c4dbe17089a590fde1, type: 2}
+  spellToGrant: {fileID: 11400000, guid: 754c6e71fd8363d428c7b6c1c4c5ead4, type: 2}

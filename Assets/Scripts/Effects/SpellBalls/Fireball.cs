@@ -22,5 +22,14 @@ namespace Effects.SpellBalls
                 Explode();
             }
         }
+
+        protected override void CollideWithMirror(Vector3 contactPoint)
+        {
+            if (PhysUtils.InsideEffectZone<AshEffectZone>(contactPoint, out _))
+            {
+                Instantiate(GlobalDefinitions.HeatedMirrorEffectZone, transform.position, Quaternion.identity);
+                Explode();
+            }
+        }
     }
 }

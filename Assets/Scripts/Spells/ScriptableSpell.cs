@@ -1,15 +1,19 @@
-﻿using Effects;
-using Effects.SpellBalls;
+﻿using Effects.SpellBalls;
 using Player;
 using UnityEngine;
 
 namespace Spells
 {
-    public class FireballSpell : Spell
+    [CreateAssetMenu(menuName = "Spell")]
+    public class ScriptableSpell : ScriptableObject
     {
+        [SerializeField] private string title;
         [SerializeField] private SpellBall ball;
+
+
+        public string Title => title;
         
-        public override void Cast()
+        public void Cast()
         {
             Transform t = PlayerCamera.Instance.transform;
             Vector3 spawnPos = t.position - new Vector3(0, 0.5f, 0) + t.forward * 0.2f;

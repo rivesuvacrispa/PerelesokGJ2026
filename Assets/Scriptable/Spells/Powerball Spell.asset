@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3cc5ad02e74117aa16ec9cc11fceda, type: 3}
+  m_Name: Powerball Spell
+  m_EditorClassIdentifier: Assembly-CSharp::Spells.ScriptableSpell
+  title: "\u0421\u0438\u043B\u043E\u0432\u043E\u0439 \u0448\u0430\u0440"
+  ball: {fileID: 2982212272561931116, guid: a4f20c8f3d65b104e83b16c8baccab25, type: 3}

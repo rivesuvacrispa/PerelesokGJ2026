@@ -17,3 +17,6 @@ MonoBehaviour:
     \u043C\u043D\u043E\u0433\u043E \u043B\u0435\u0442."
   nextEntry: {fileID: 11400000, guid: ee2096e1a89b4084585eae6e8b4e35c8, type: 2}
   options: []
+  hasEvent: 0
+  storyEvent: {fileID: 0}
+  spriteMode: 1

@@ -19,3 +19,4 @@ MonoBehaviour:
   options: []
   hasEvent: 1
   storyEvent: {fileID: 511922803517937832, guid: 0dd02f274c605e740b4768c213592a49, type: 3}
+  spriteMode: 1

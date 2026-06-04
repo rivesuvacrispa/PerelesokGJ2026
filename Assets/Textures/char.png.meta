@@ -373,6 +373,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: char_12
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 1576
+        width: 261
+        height: 432
+      alignment: 9
+      pivot: {x: 0.478727, y: 0.00044024433}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e3610ca0fc50949a28d2c4dea30946
+      internalID: -569682379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: char_13
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 1577
+        width: 201
+        height: 423
+      alignment: 9
+      pivot: {x: 0.45225897, y: 0.0003084945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827a52f5884368146acd593d05c5ab1f
+      internalID: 244583870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -393,6 +437,8 @@ TextureImporter:
       char_1: -1280274814
       char_10: 1104561459
       char_11: 133226479
+      char_12: -569682379
+      char_13: 244583870
       char_2: -1609560887
       char_3: 1574474283
       char_4: -18981439

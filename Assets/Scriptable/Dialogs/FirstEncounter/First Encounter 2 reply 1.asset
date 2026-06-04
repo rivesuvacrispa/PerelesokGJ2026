@@ -15,3 +15,6 @@ MonoBehaviour:
   text: "\u041A\u0442\u043E \u0442\u044B?"
   nextEntry: {fileID: 11400000, guid: 6b113a3c3fa8a7f468f147ad50c38c34, type: 2}
   options: []
+  hasEvent: 0
+  storyEvent: {fileID: 0}
+  spriteMode: 1

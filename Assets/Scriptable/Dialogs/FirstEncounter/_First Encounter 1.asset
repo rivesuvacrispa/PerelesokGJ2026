@@ -15,3 +15,6 @@ MonoBehaviour:
   text: "\u0421\u0442\u043E\u0439!"
   nextEntry: {fileID: 11400000, guid: 5526eee4866951642835eb39461dba46, type: 2}
   options: []
+  hasEvent: 0
+  storyEvent: {fileID: 0}
+  spriteMode: 1

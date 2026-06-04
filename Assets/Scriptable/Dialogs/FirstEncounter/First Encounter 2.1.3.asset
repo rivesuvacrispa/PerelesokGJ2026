@@ -20,3 +20,4 @@ MonoBehaviour:
   options: []
   hasEvent: 0
   storyEvent: {fileID: 0}
+  spriteMode: 1

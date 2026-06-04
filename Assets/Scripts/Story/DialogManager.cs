@@ -71,6 +71,7 @@ namespace Story
             ClearOptions();
             currentEntry = null;
             OnDialogEnd?.Invoke();
+            PlayerSprite.PlayerSpriteMode = PlayerSpriteMode.Normal;
         }
 
         private void ClearOptions()
@@ -85,6 +86,7 @@ namespace Story
             currentEntry = entry;
             mainText.SetText(entry.Text);
             SetButtonAction(mainText, NextEntry);
+            PlayerSprite.PlayerSpriteMode = entry.SpriteMode;
             for (var i = 0; i < entry.Options.Count; i++)
             {
                 var opt = entry.Options[i];
@@ -100,7 +102,7 @@ namespace Story
         {
             if (currentEntry is null || currentEntry.Options.Count != 0) return;
 
-            Debug.Log($"Current entry: {currentEntry?.name}, next: {currentEntry?.NextEntry}");
+            Debug.Log($"Current entry: {currentEntry.name}, next: {currentEntry.NextEntry}");
             MakeStep(currentEntry.NextEntry);
         }
 

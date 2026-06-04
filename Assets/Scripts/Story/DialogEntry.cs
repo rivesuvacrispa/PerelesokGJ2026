@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Player;
 using Story.Events;
 using UnityEngine;
 
@@ -12,11 +13,14 @@ namespace Story
         [SerializeField] private List<DialogEntry> options = new();
         [SerializeField] private bool hasEvent;
         [SerializeField] private SaveMemoryEvent storyEvent;
-
+        [SerializeField] private PlayerSpriteMode spriteMode = PlayerSpriteMode.Normal;
+        
         public string Text => text;
         public DialogEntry NextEntry => nextEntry;
         public List<DialogEntry> Options => options;
         public bool HasEvent => hasEvent;
         public SaveMemoryEvent StoryEvent => storyEvent;
+
+        public PlayerSpriteMode SpriteMode => spriteMode;
     }
 }

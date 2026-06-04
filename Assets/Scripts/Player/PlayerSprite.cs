@@ -9,6 +9,8 @@ namespace Player
         
         private Transform playerTransform;
 
+        private readonly int frontGoodAnimHash = Animator.StringToHash("Front Good");
+        private readonly int frontEvilAnimHash = Animator.StringToHash("Front Evil");
         private readonly int frontIdleAnimHash = Animator.StringToHash("Front Idle");
         private readonly int frontWalkAnimHash = Animator.StringToHash("Front Walk");
         private readonly int backIdleAnimHash = Animator.StringToHash("Back Idle");
@@ -20,6 +22,8 @@ namespace Player
 
         private int[] lookDirectionToIdleAnim;
         private int[] lookDirectionToWalkAnim;
+
+        public static PlayerSpriteMode PlayerSpriteMode { get; set; } = PlayerSpriteMode.Normal;
         
         private void Awake()
         {
@@ -42,7 +46,21 @@ namespace Player
 
         private int GetAnim(bool isMoving, int lookDirection)
         {
-            return isMoving ? lookDirectionToWalkAnim[lookDirection] : lookDirectionToIdleAnim[lookDirection];
+            if (isMoving)
+                return lookDirectionToWalkAnim[lookDirection];
+
+            if (lookDirection == 0)
+            {
+                switch (PlayerSpriteMode)
+                {
+                    case PlayerSpriteMode.Evil:
+                        return frontEvilAnimHash;
+                    case PlayerSpriteMode.Good:
+                        return frontGoodAnimHash;
+                }
+            }
+            
+            return lookDirectionToIdleAnim[lookDirection];
         }
 
         private void UpdatePosition()

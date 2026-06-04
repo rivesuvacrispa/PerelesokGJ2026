@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3715012588441590157
+--- !u!1001 &259784929380983601
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -58,29 +58,37 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 427918427048476037, guid: bb5d0792485af8543b988748b4aff5a2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4970063591138670263}
+      addedObject: {fileID: 5246418221150733504}
   m_SourcePrefab: {fileID: 100100000, guid: bb5d0792485af8543b988748b4aff5a2, type: 3}
---- !u!1 &3926617495753663496 stripped
+--- !u!1 &462380436368236212 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 427918427048476037, guid: bb5d0792485af8543b988748b4aff5a2, type: 3}
-  m_PrefabInstance: {fileID: 3715012588441590157}
+  m_PrefabInstance: {fileID: 259784929380983601}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4970063591138670263
+--- !u!114 &5246418221150733504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3926617495753663496}
+  m_GameObject: {fileID: 462380436368236212}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7728203c3984b918a39de97522d2a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interaction.Objects.Bed
---- !u!4 &6015318388263374146 stripped
+  firstDaySleepMem: {fileID: 0}
+  secondDayDialog: {fileID: 0}
+  thirdDayDialog: {fileID: 0}
+  helpMeCrackMirrorDialog: {fileID: 0}
+  mirrorCrackedMem: {fileID: 0}
+  day4Dialog: {fileID: 0}
+  debug_DayOnStart: 1
+  iDontWannaSleepDialog: {fileID: 0}
+--- !u!4 &7164705239096555518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6986442500424209615, guid: bb5d0792485af8543b988748b4aff5a2, type: 3}
-  m_PrefabInstance: {fileID: 3715012588441590157}
+  m_PrefabInstance: {fileID: 259784929380983601}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5152872590250884046
 PrefabInstance:
@@ -143,7 +151,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: aa0854d4c10839e43bef921b4bcd89fb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6015318388263374146}
+      addedObject: {fileID: 7164705239096555518}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0854d4c10839e43bef921b4bcd89fb, type: 3}
 --- !u!4 &4613963298746752037 stripped

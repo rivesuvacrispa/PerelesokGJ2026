@@ -66,3 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a63847c6d34bea9e70d1773932f1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Effects.EffectZones.MirrorCrackEffectZone
+  playerCrackedMirrorMem: {fileID: 11400000, guid: ba1de9a06ba49404fa5f558fbe81fbd8, type: 2}
+  playerCrackedMirrorSecondTimeMem: {fileID: 11400000, guid: bce7c9052d37b8343802b8bafaf6b797, type: 2}

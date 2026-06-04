@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc32579ed0284b048759a289b03b0ec3, type: 3}
   m_Name: IDontWannaSleep 1
   m_EditorClassIdentifier: Assembly-CSharp::Story.DialogEntry
-  text: 
+  text: "\u042F \u043F\u043E\u043A\u0430 \u043D\u0435 \u0445\u043E\u0447\u0443 \u0441\u043F\u0430\u0442\u044C."
   nextEntry: {fileID: 0}
   options: []
   hasEvent: 0

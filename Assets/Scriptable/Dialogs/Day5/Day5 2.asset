@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc32579ed0284b048759a289b03b0ec3, type: 3}
+  m_Name: Day5 2
+  m_EditorClassIdentifier: Assembly-CSharp::Story.DialogEntry
+  text: "\u0414\u0430\u0442\u044C \u043E\u0441\u043A\u043E\u043B\u043A\u0438?"
+  nextEntry: {fileID: 0}
+  options:
+  - {fileID: 11400000, guid: 08aec955b5750804591f0b09d3f36180, type: 2}
+  - {fileID: 11400000, guid: ce7f45b882e6fdc40a62b4b63f73c282, type: 2}
+  hasEvent: 0
+  storyEvent: {fileID: 0}
+  spriteMode: 1

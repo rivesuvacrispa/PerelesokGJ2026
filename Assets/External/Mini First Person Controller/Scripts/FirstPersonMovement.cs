@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace External.Mini_First_Person_Controller.Scripts
@@ -42,6 +43,12 @@ namespace External.Mini_First_Person_Controller.Scripts
 
             // Apply movement.
             rigidbody.linearVelocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.linearVelocity.y, targetVelocity.y);
+        }
+
+        private void OnDisable()
+        {
+            rigidbody.linearVelocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using Effects.EffectZones;
 using Global;
-using Player;
 using UnityEngine;
 
 namespace Util
 {
     public static class PhysUtils
     {
+        public static Vector3 roomCenter = new Vector3(0, 1.22f, 0);
+        
         private static Vector3[] allDirections = new[]
         {
             Vector3.forward,

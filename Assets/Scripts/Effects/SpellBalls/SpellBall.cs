@@ -8,25 +8,25 @@ namespace Effects.SpellBalls
     public class SpellBall : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private ParticleSystem particles;
+        [SerializeField] protected ParticleSystem particles;
         [SerializeField] private ParticleSystem explosionParticles;
         
         [Header("Settings")]
         [SerializeField] private float minVelocityToDespawn = 4f;
-        [SerializeField] private int collisionsToDespawn = 8;
+        [SerializeField] protected int collisionsToDespawn = 8;
         
         private Rigidbody rb;
         private Collider col;
         protected bool isDespawning = false;
         protected bool isSpawning = true;
-        private int collisionCounter = 0;
+        protected int collisionCounter = 0;
         public delegate void SpellBallCollisionEvent(SpellBall ball, Collision collision);
         public static event SpellBallCollisionEvent OnMirrorCollisionGlobal;
         public Rigidbody Rigidbody => rb;
 
 
         
-        private void Awake()
+        protected virtual void Awake()
         {
             rb = GetComponent<Rigidbody>();
             col = GetComponent<Collider>();
@@ -39,6 +39,8 @@ namespace Effects.SpellBalls
             
             rb.linearVelocity *= 1.25f;
             collisionCounter++; 
+            
+            OnAnyCollision();
 
             if (collision.gameObject.layer == GlobalDefinitions.MirrorsLayer)
             {
@@ -50,7 +52,9 @@ namespace Effects.SpellBalls
                 CollideWithSpellBall(collision.contacts[0].point, collision.gameObject.GetComponent<SpellBall>());
             
             if (collisionCounter >= collisionsToDespawn)
+            {
                 Despawn();
+            }
         }
 
         protected virtual void CollideWithSpellBall(Vector3 point, SpellBall other)
@@ -59,6 +63,11 @@ namespace Effects.SpellBalls
         }
 
         protected virtual void CollideWithMirror(Vector3 contactPoint)
+        {
+            
+        }
+
+        protected virtual void OnAnyCollision()
         {
             
         }
@@ -74,7 +83,7 @@ namespace Effects.SpellBalls
             StartCoroutine(DespawnRoutine());
         }
 
-        public void Explode()
+        protected virtual void Explode()
         {
             particles.Stop();
             explosionParticles.Play();

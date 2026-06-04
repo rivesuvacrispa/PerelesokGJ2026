@@ -61,6 +61,7 @@ namespace Story
             PlayEntry(entry);
             optionsTransform.gameObject.SetActive(true);
             OnDialogStart?.Invoke();
+            ControlsManager.OnNumberPress += OnNumberPress;
         }
 
         private void EndDialog()
@@ -72,6 +73,7 @@ namespace Story
             currentEntry = null;
             OnDialogEnd?.Invoke();
             PlayerSprite.PlayerSpriteMode = PlayerSpriteMode.Normal;
+            ControlsManager.OnNumberPress -= OnNumberPress;
         }
 
         private void ClearOptions()
@@ -87,6 +89,7 @@ namespace Story
             mainText.SetText(entry.Text);
             SetButtonAction(mainText, NextEntry);
             PlayerSprite.PlayerSpriteMode = entry.SpriteMode;
+            print($"options count: {entry.Options.Count}");
             for (var i = 0; i < entry.Options.Count; i++)
             {
                 var opt = entry.Options[i];
@@ -112,16 +115,20 @@ namespace Story
          */
         private void MakeStep(DialogEntry entry)
         {
-            if (currentEntry is not null && currentEntry.HasEvent) 
+            if (currentEntry is not null && currentEntry.HasEvent)
+            {
                 currentEntry.StoryEvent.Fire();
-            
-            if (entry is not null) PlayEntry(entry);
+            }
+
+            if (entry is not null)
+                PlayEntry(entry);
             else EndDialog();
         }
 
         private void CreateOption(string prefix, DialogEntry option)
         {
-            TMP_Text opt = optionsList.FirstOrDefault(text => !text.gameObject.activeInHierarchy);
+            print($"Opt {prefix} + {option.Text}");
+            TMP_Text opt = optionsList.FirstOrDefault(text => !text.gameObject.activeSelf);
             if (opt is null)
             {
                 opt = Instantiate(mainText, optionsTransform);
@@ -130,7 +137,12 @@ namespace Story
             }
 
             opt.SetText(prefix + option.Text);
-            SetButtonAction(opt, () => MakeStep(option.NextEntry));
+            opt.gameObject.SetActive(true);
+            SetButtonAction(opt, () =>
+            {
+                if (option.HasEvent) option.StoryEvent.Fire();
+                MakeStep(option.NextEntry);
+            });
         }
 
         private void SetButtonAction(TMP_Text text, UnityAction call)
@@ -138,6 +150,17 @@ namespace Story
             Button b = text.GetComponent<Button>();
             b.onClick.RemoveAllListeners();
             b.onClick.AddListener(call);
+        }
+        
+        private void OnNumberPress(int index)
+        {
+            if (currentEntry is null) return;
+            
+            int optionIndex = index - 1;
+            if (optionIndex < 0 || optionIndex >= currentEntry.Options.Count)
+                return;
+            
+            MakeStep(currentEntry.Options[optionIndex].NextEntry);
         }
     }
 }

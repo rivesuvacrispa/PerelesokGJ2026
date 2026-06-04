@@ -9,6 +9,13 @@ namespace Global
     {
         [Header("Global objects")]
         [SerializeField] private SignLetter signLetter;
+        [SerializeField] private Safe safe;
+        [SerializeField] private IceKeyFrame keyFrame;
+        [SerializeField] private Sword sword;
+        [SerializeField] private GameObject creditsGO;
+        
+        [Header("Prefabs")]
+        [SerializeField] private MirrorShard mirrorShardPrefab;
 
         [Header("Effect Zone Prefabs")]
         [SerializeField] private AshEffectZone ashEffectZone;
@@ -26,6 +33,10 @@ namespace Global
 
 
         public static SignLetter SignLetter => instance.signLetter;
+        public static Safe Safe => instance.safe;
+        public static IceKeyFrame IceKeyFrame => instance.keyFrame;
+        public static GameObject Credits => instance.creditsGO;
+        public static Sword Sword => instance.sword;
         public static AshEffectZone AshEffectZone => instance.ashEffectZone;
         public static HeatedMirrorEffectZone HeatedMirrorEffectZone => instance.heatedMirrorEffectZone;
         public static MirrorCrackEffectZone MirrorCrackEffectZone => instance.mirrorCrackEffectZone;
@@ -34,6 +45,7 @@ namespace Global
         public static int SpellEffectZoneLayer { get; private set; }
         public static Sprite GetCrackSprite(MirrorCrackType crackType) => instance.crackTypeToCrackSprite[(int)crackType];
         public static Material MirrorCrackMaterial => instance.mirrorCrackMaterial;
+        public static MirrorShard MirrorShardPrefab => instance.mirrorShardPrefab;
 
 
         private void Awake()

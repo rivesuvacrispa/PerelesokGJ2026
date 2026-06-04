@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Effects.SpellBalls;
 using Player;
+using Spells;
 using Story;
 using UnityEngine;
 using Util;
@@ -14,7 +17,19 @@ namespace Interaction.Objects
         [SerializeField] private PlotMemory letterWasBurnedMem;
         [SerializeField] private ParticleSystem burnParticles;
         [SerializeField] private SpriteRenderer spriteRenderer;
-        
+        [SerializeField] private SpellballReceiver receiver;
+
+        private void Awake()
+        {
+            receiver.OnSpellBallReceived += OnSpellballReceived;
+        }
+
+        private void OnSpellballReceived(SpellBall spellball)
+        {
+            if (spellball is Fireball && !MemoryManager.HasMemory(letterWasBurnedMem))
+                Burn();
+        }
+
         public string GetLabel()
         {
             return "Прочитать";
@@ -22,12 +37,12 @@ namespace Interaction.Objects
 
         public bool CanInteract()
         {
-            return !PlotManager.HasMemory(letterWasBurnedMem);
+            return !MemoryManager.HasMemory(letterWasBurnedMem);
         }
 
         public void Interact()
         {
-            bool firstTime = !PlotManager.HasMemory(firstEncounterFinishedMem);
+            bool firstTime = !MemoryManager.HasMemory(firstEncounterFinishedMem);
 
             Vector3 cameraLookAt = PhysUtils.FindClosestMirrorPoint(PlayerCamera.Instance.transform.position);
             DialogManager.Instance.StartDialog(
@@ -37,7 +52,7 @@ namespace Interaction.Objects
 
         public void Burn()
         {
-            PlotManager.AddMemory(letterWasBurnedMem);
+            MemoryManager.AddMemory(letterWasBurnedMem);
             burnParticles.Play();
             StartCoroutine(BurnRoutine());
         }
@@ -46,7 +61,7 @@ namespace Interaction.Objects
         {
             yield return new WaitForSeconds(burnParticles.main.duration / 2f);
             spriteRenderer.enabled = false;
-            yield return new WaitUntil(() => !burnParticles.isPlaying);
+            yield return new WaitUntil(() => !burnParticles.IsAlive());
             Destroy(gameObject);
         }
     }

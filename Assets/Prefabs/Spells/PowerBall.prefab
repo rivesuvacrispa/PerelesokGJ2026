@@ -4946,8 +4946,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Effects.SpellBall
   particles: {fileID: 6477200330974304778}
   explosionParticles: {fileID: 4243439699782099606}
-  minVelocityToDespawn: 4
+  minVelocityToDespawn: 0.1
   collisionsToDespawn: 5
+  ballParticles: {fileID: 8125739094310256033}
 --- !u!54 &3583300608905495163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10274,7 +10275,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -20061,8 +20062,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 1.1
+      minMaxState: 0
+      scalar: 0.5
       minScalar: 0.8
       maxCurve:
         serializedVersion: 2
@@ -20114,7 +20115,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -20167,7 +20168,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:

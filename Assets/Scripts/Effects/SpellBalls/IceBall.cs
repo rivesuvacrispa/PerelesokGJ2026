@@ -20,8 +20,7 @@ namespace Effects.SpellBalls
             
             if (insideHeat)
             {
-                print($"Inside {heatStacks} heat stacks");
-                if (heatStacks >= 5)
+                if (heatStacks >= 3)
                     Instantiate(GlobalDefinitions.MirrorCrackEffectZone, transform.position, Quaternion.identity);
             }
         }

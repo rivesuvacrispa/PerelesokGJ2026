@@ -71,7 +71,7 @@ namespace Player
         private void UpdateSprites()
         {
             bool isMoving = PlayerInstance.Instance.Rigidbody.linearVelocity.sqrMagnitude > 0.09f;
-            float y = playerTransform.eulerAngles.y;
+            float y = PlayerCamera.Instance.transform.eulerAngles.y;
             int lookDirection = Mathf.RoundToInt(y / 90f) % 4;
             
             // 0 - Z+

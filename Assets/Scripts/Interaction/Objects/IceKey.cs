@@ -32,7 +32,7 @@ namespace Interaction.Objects
             gameObject.transform.parent.SetParent(null, true);
             yield return new WaitForEndOfFrame();
             
-            Vector3 targetPos = GlobalDefinitions.Safe.transform.position;
+            Vector3 targetPos = GlobalDefinitions.Safe.transform.position + Vector3.up * 0.1f;
             float t = 0;
             while (t < 2f)
             {
@@ -45,6 +45,7 @@ namespace Interaction.Objects
 
             GlobalDefinitions.Safe.Play();
             yield return BlackScreenOverlay.Instance.FadeIn(3f);
+            transform.parent.localScale = Vector3.zero;
             DialogManager.Instance.StartDialog(endGameDialog);
         }
     }

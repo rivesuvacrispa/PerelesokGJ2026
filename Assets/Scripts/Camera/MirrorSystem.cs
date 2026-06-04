@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Plane;
 using UnityEngine;
 
-namespace Mirror
+namespace Camera
 {
     public class MirrorSystem : MonoBehaviour
     {
@@ -96,7 +97,7 @@ namespace Mirror
             frustumCam.CopyFrom(mainCam);
             frustumCam.transform.position = viewCam.position;
             frustumCam.transform.rotation = viewCam.rotation;
-            Plane[] frustumPlanes = GeometryUtility.CalculateFrustumPlanes(frustumCam);
+            UnityEngine.Plane[] frustumPlanes = GeometryUtility.CalculateFrustumPlanes(frustumCam);
 
             List<MirrorPlane> visibleMirrors = new List<MirrorPlane>();
             foreach (var mirror in mirrors)

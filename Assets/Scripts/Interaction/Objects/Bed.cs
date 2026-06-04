@@ -4,6 +4,8 @@ namespace Interaction.Objects
 {
     public class Bed : MonoBehaviour, IInteractable
     {
+        public static event System.Action OnSleep; 
+
         public string GetLabel()
         {
             return "Лечь спать";
@@ -16,7 +18,7 @@ namespace Interaction.Objects
 
         public void Interact()
         {
-            Debug.Log("Interact with bed");
+            OnSleep?.Invoke();
         }
     }
 }

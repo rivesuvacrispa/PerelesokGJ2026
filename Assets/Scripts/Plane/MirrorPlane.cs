@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Mirror
+namespace Plane
 {
     public class MirrorPlane : MonoBehaviour
     {

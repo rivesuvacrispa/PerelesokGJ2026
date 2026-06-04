@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: First Encounter 2 reply 2
   m_EditorClassIdentifier: Assembly-CSharp::Story.DialogEntry
   text: "\u041F\u043E\u0447\u0435\u043C\u0443?"
-  nextEntry: {fileID: 11400000, guid: 5526eee4866951642835eb39461dba46, type: 2}
+  nextEntry: {fileID: 11400000, guid: 53abff7ba4b42e6478a981edd7dbee12, type: 2}
   options: []
+  hasEvent: 0
+  storyEvent: {fileID: 0}

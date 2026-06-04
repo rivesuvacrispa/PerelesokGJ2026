@@ -2,7 +2,7 @@
 
 namespace Story.Events
 {
-    public class StoryEvent : MonoBehaviour
+    public class SaveMemoryEvent : MonoBehaviour
     {
         [SerializeField] private PlotMemory memory;
 
@@ -14,7 +14,7 @@ namespace Story.Events
         public void Fire()
         {
             OnFire();
-            PlotManager.Add(memory);
+            PlotManager.AddMemory(memory);
         }
     }
 }

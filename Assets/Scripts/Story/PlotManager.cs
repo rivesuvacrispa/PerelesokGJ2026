@@ -5,9 +5,9 @@ namespace Story
 {
     public class PlotManager : MonoBehaviour
     {
-        private static readonly HashSet<PlotMemory> plotEvents = new();
+        private static readonly HashSet<PlotMemory> PLOT_EVENTS = new();
 
-        public static bool Has(PlotMemory plotEvent) => plotEvents.Contains(plotEvent);
-        public static void Add(PlotMemory plotEvent) => plotEvents.Add(plotEvent);
+        public static bool HasMemory(PlotMemory plotEvent) => PLOT_EVENTS.Contains(plotEvent);
+        public static void AddMemory(PlotMemory plotEvent) => PLOT_EVENTS.Add(plotEvent);
     }
 }

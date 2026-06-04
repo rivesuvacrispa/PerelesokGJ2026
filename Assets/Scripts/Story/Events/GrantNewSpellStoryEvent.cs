@@ -1,6 +1,6 @@
 ﻿namespace Story.Events
 {
-    public class GrantNewSpellStoryEvent : StoryEvent
+    public class GrantNewSpellStoryEvent : SaveMemoryEvent
     {
         protected override void OnFire()
         {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Effects.SpellBalls;
+using UnityEngine;
 
 namespace Effects
 {

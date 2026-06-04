@@ -60,7 +60,7 @@ namespace Interaction
             Ray ray = CreateRay();
             bool intersect = Physics.Raycast(ray, out RaycastHit info, interactionDistance, interactionMask);
             bool hasInteractable = intersect && info.collider.gameObject.TryGetComponent(out interactable);
-
+            
             if (hasInteractable && interactable.CanInteract())
             {
                 if (CurrentInteractable != interactable) OnEnterInteractable?.Invoke(interactable);

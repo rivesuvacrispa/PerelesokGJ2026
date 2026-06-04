@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc32579ed0284b048759a289b03b0ec3, type: 3}
-  m_Name: First Encounter 4
+  m_Name: First Encounter 2.2.1
   m_EditorClassIdentifier: Assembly-CSharp::Story.DialogEntry
-  text: "\u041C\u044B \u043D\u0430\u0445\u043E\u0434\u0438\u043C\u0441\u044F \u0432
-    \u044D\u0442\u043E\u0439 \u0442\u044E\u0440\u044C\u043C\u0435 \u0443\u0436\u0435
-    \u043C\u043D\u043E\u0433\u043E \u043B\u0435\u0442."
+  text: "\u041A\u0442\u043E-\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B
+    \u044D\u0442\u043E \u0437\u0434\u0435\u0441\u044C, \u0447\u0442\u043E\u0431\u044B
+    \u0442\u044B \u0432\u0441\u043F\u043E\u043C\u043D\u0438\u043B, \u043A\u0435\u043C
+    \u0442\u044B \u0431\u044B\u043B."
   nextEntry: {fileID: 11400000, guid: ee2096e1a89b4084585eae6e8b4e35c8, type: 2}
   options: []

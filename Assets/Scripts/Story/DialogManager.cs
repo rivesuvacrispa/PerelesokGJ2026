@@ -4,6 +4,7 @@ using System.Linq;
 using Controls;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -51,7 +52,7 @@ namespace Story
 
         public void StartDialog(DialogEntry entry)
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             PlayEntry(entry);
             optionsTransform.gameObject.SetActive(true);
@@ -79,6 +80,7 @@ namespace Story
             ClearOptions();
             currentEntry = entry;
             mainText.SetText(entry.Text);
+            SetButtonAction(mainText, NextEntry);
             for (var i = 0; i < entry.Options.Count; i++)
             {
                 var opt = entry.Options[i];
@@ -121,7 +123,14 @@ namespace Story
             }
 
             opt.SetText(prefix + option.Text);
-            opt.GetComponent<Button>().onClick.AddListener(() => MakeStep(option.NextEntry));
+            SetButtonAction(opt, () => MakeStep(option.NextEntry));
+        }
+
+        private void SetButtonAction(TMP_Text text, UnityAction call)
+        {
+            Button b = text.GetComponent<Button>();
+            b.onClick.RemoveAllListeners();
+            b.onClick.AddListener(call);
         }
     }
 }

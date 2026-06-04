@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Story.DialogEntry
   text: "\u0421\u0438\u043B\u0430 \u044D\u0442\u043E\u0433\u043E \u043C\u0435\u0447\u0430
     \u043F\u043E\u0433\u043B\u043E\u0442\u0438\u043B\u0430 \u0420\u0435\u0437\u043A\u0441\u043D\u0443."
-  nextEntry: {fileID: 11400000, guid: cd7f95ee0cb537f43a3f6cef2b092982, type: 2}
+  nextEntry: {fileID: 11400000, guid: 4199b6b3307678a44b3929e457a91328, type: 2}
   options: []
   hasEvent: 0
   storyEvent: {fileID: 0}

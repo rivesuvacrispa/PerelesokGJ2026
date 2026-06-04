@@ -14,11 +14,14 @@ namespace Interaction.Objects
 
         public static readonly List<MirrorShard> SHARDS = new();
         public static int ShardsCount => SHARDS.Count;
+        public static event Action OnShardSpawn;
+        
 
         private void Awake()
         {
             Rigidbody = GetComponent<Rigidbody>();
             SHARDS.Add(this);
+            OnShardSpawn?.Invoke();
         }
 
         public void PlayParticles()

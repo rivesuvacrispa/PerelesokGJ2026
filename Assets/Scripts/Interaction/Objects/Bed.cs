@@ -58,7 +58,7 @@ namespace Interaction.Objects
                     return MemoryManager.HasMemory(firstDaySleepMem);
             }
 
-            return false;
+            return true;
         }
 
         public string GetLabel()
@@ -75,7 +75,8 @@ namespace Interaction.Objects
         {
             if (WantsToSleep())
                 currentRoutine = StartCoroutine(InteractRoutine());
-            else DialogManager.Instance.StartDialog(iDontWannaSleepDialog);
+            else 
+                DialogManager.Instance.StartDialog(iDontWannaSleepDialog);
         }
 
         private IEnumerator InteractRoutine()
@@ -83,6 +84,7 @@ namespace Interaction.Objects
             yield return BlackScreenOverlay.Instance.FadeIn();
             OnSleep?.Invoke();
             DayCounter++;
+            print($"Day counter: {DayCounter}");
             yield return new WaitForSeconds(1f);
             yield return BlackScreenOverlay.Instance.FadeOut();
             currentRoutine = null;
@@ -100,7 +102,6 @@ namespace Interaction.Objects
             else if (DayCounter == 3)
             {
                 bool needsHelp = !MemoryManager.HasMemory(mirrorCrackedMem);
-                needsHelp = false;
                 DialogManager.Instance.StartDialog(needsHelp ? helpMeCrackMirrorDialog : thirdDayDialog, closestMirror);
             }
             
